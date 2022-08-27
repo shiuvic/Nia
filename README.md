@@ -1,1 +1,1 @@
-# Niapy](https://github.com/NiaOrg/NiaPy "link")
+# [Niapy](https://github.com/NiaOrg/NiaPy)
