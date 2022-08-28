@@ -75,6 +75,6 @@ class Griewank(Problem):
 
     def _evaluate(self, sol):
         fitness_val = sol[0] - sol[1] + 1.0
-        save(fitness_val, self.algo, self.times)
+        save(fitness_val, self.algo, self.times, type=False)
 
         return fitness_val

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def save(reward, name, times):
+def save(reward, name, times, type):
     x = reward
     fit = np.load('/Nia/data/%s/%s_fit_val(%d).npy' % (name, name, times))
 
@@ -10,10 +10,16 @@ def save(reward, name, times):
         fit = np.append(fit, x)
     else:
         last = fit[-1]
-        if x < last:
-            fit = np.append(fit, x)
+        if type:
+            if x > last:
+                fit = np.append(fit, x)
+            else:
+                fit = np.append(fit, last)
         else:
-            fit = np.append(fit, last)
+            if x < last:
+                fit = np.append(fit, x)
+            else:
+                fit = np.append(fit, last)
     np.save('/Nia/data/%s/%s_fit_val(%d).npy' % (name, name, times), fit)
 
 def clear(name, times):
