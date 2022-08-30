@@ -17,9 +17,6 @@ from niapy.algorithms.basic import DifferentialEvolution
 from niapy.algorithms.basic import BatAlgorithm
 
 
-# we will run ParticleSwarmAlgorithm for 5 independent runs
-
-
 algo_list = ['Pso', 'abc', 'gwo', 'ga', 'de', 'ba']
 
 Pso = ParticleSwarmAlgorithm(population_size=5, min_velocity=-4.0, max_velocity=4.0)

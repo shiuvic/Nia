@@ -1,10 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+nowpath = os.path.abspath(__file__)
+fileDirectory = os.path.dirname(nowpath)
+parentDirectory = os.path.dirname(fileDirectory)
+data_path = os.path.join(parentDirectory, 'data')
+
 
 def save(reward, name, times, type):
     x = reward
-    fit = np.load('/Nia/data/%s/%s_fit_val(%d).npy' % (name, name, times))
+    target_path = os.path.join(data_path, name)
+    fit = np.load(os.path.join(target_path, '%s_fit_val(%d).npy' % (name, times)))
 
     if fit.size == 0:
         fit = np.append(fit, x)
@@ -20,21 +26,24 @@ def save(reward, name, times, type):
                 fit = np.append(fit, x)
             else:
                 fit = np.append(fit, last)
-    np.save('/Nia/data/%s/%s_fit_val(%d).npy' % (name, name, times), fit)
+    np.save(os.path.join(target_path, '%s_fit_val(%d).npy' % (name, times)), fit)
+
 
 def clear(name, times):
     a = []
     for i in name:
-        if not os.path.isdir('/Nia/data/%s' % i):
-            os.mkdir('/Nia/data/%s' % i)
-        np.save('/Nia/data/%s/%s_fit_val(%d).npy' % (i, i, times), a)
+        target_path = os.path.join(data_path, i)
+        if not os.path.isdir(target_path):
+            target_path = os.path.join(data_path, i)
+            os.mkdir(target_path)
+        np.save(os.path.join(target_path, '%s_fit_val(%d).npy' % (i, times)), a)
 
 
 def show(name, times):
     for i in name:
-        data1 = np.load('/Nia/data/%s/%s_fit_val(%d).npy' % (i, i, times))
+        target_path = os.path.join(data_path, i)
+        data1 = np.load(os.path.join(target_path, '%s_fit_val(%d).npy' % (i, times)))
         plt.plot(data1, label=i)
     plt.title('NiaPy Learning Curve')
     plt.legend()
     plt.show()
-
