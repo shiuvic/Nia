@@ -7,7 +7,7 @@ parentDirectory = os.path.dirname(fileDirectory)
 data_path = os.path.join(parentDirectory, 'data')
 
 
-def save(reward, name, times, type):
+def save(reward, name, times, upper):
     x = reward
     target_path = os.path.join(data_path, name)
     fit = np.load(os.path.join(target_path, '%s_fit_val(%d).npy' % (name, times)))
@@ -16,7 +16,7 @@ def save(reward, name, times, type):
         fit = np.append(fit, x)
     else:
         last = fit[-1]
-        if type:
+        if upper:
             if x > last:
                 fit = np.append(fit, x)
             else:

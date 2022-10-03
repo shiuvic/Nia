@@ -48,7 +48,6 @@ class Griewank(Problem):
     """
 
     def __init__(self, dimension=4, lower=-100.0, upper=100.0, algo=None, times=None, *args, **kwargs,):
-        self.c = 0
         r"""Initialize Griewank problem..
 
         Args:
@@ -75,6 +74,6 @@ class Griewank(Problem):
 
     def _evaluate(self, sol):
         fitness_val = sol[0] - sol[1] + 1.0
-        save(fitness_val, self.algo, self.times, type=False)
+        save(fitness_val, self.algo, self.times, upper=False)
 
         return fitness_val
