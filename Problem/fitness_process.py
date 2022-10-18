@@ -44,6 +44,6 @@ def show(name, times):
         target_path = os.path.join(data_path, i)
         data1 = np.load(os.path.join(target_path, '%s_fit_val(%d).npy' % (i, times)))
         plt.plot(data1, label=i)
-    plt.title('NiaPy Learning Curve')
+    plt.title('Learning Curve')
     plt.legend()
     plt.show()
