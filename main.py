@@ -32,7 +32,7 @@ run = [Pso, abc, gwo, ga, de, ba]
 for times in range(5):
     clear(algo_list, times)
     for i in run:
-        task = Task(problem=Griewank(dimension=5, upper=100, lower=-100, algo=algo_list[run.index(i)], times=times), max_iters=10)
+        task = Task(problem=Griewank(dimension=5, upper=100, lower=-100, algo=algo_list[run.index(i)], times=times), max_evals=10)
         best = i.run(task=task)
         # print('%s -> %f' % (best[0], best[1]))
 
